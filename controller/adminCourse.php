@@ -115,3 +115,4 @@ elseif ($fn=='deleteCourse'){
         echo "error";
     }
 }
+
