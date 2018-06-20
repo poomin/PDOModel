@@ -12,9 +12,9 @@ $type  = isset($_REQUEST['type'])?$_REQUEST['type']:"";
 $type = strtolower($type);
 $host = $_SERVER['SERVER_NAME'];
 if($host=='localhost'){
-    $targetFolder = '/upload/'.$type;  //for localhost
+    $targetFolder = '/upload/file_upload/';  //for localhost
 }else{
-    $targetFolder = '/upload/'.$type;    //for server
+    $targetFolder = '/upload/file_upload/';    //for server
 }
 
 
@@ -28,12 +28,7 @@ if (!empty($_FILES)) {
     $nameImage = $cut_name[0];
 
     $t=time();
-    if($type=='video'){
-        $change_name = $type."_".$t.".mp4";
-    }else{
-        $change_name = $type."_".$t.".".$extension;
-    }
-//    $change_name = $type."_".$t.".".$extension;
+    $change_name = $type."_".$t.".".$extension;
 
     $targetFile = rtrim($targetPath, '/') . '/'.$change_name;
 
