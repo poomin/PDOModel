@@ -36,10 +36,9 @@
 
 <body class="container">
 
-
 <div id="loadFile" class="text-center">
     <div class="form-show-file" style="padding-top: 20px;">
-        <img id="src_image" src="upload/file_upload/null.png" alt="File Upload" class="img-rounded">
+        <img id="src_image" src="upload/file_upload/null.png" alt="File Upload" class="img-rounded" style="height: 250px;">
     </div>
     <div class="form-inline hide" id="show_progressBar_upload">
         <div class="progress" style="float:left; width: 90%; margin-right: 5px;">
@@ -67,7 +66,6 @@
 
 </div>
 
-
 <footer style="padding-top: 150px;">
 
     <div class="container text-muted text-center">
@@ -88,7 +86,6 @@
 <script type="text/javascript" src="js/script.js"></script>
 
 
-
 <script>
 
     var ajax_upload;
@@ -102,6 +99,7 @@
             var file_type = cut_type_file[cut_type_file.length - 1];
             file_type = file_type.toLowerCase();
             var file_type_set_accept = ["png"];
+            var set_type_upload = "news";
             //console.log(file_type);
 
             //check type file upload
@@ -118,7 +116,7 @@
                 ajax_upload.addEventListener("load", completeHandler, false);
                 ajax_upload.addEventListener("error", errorHandler, false);
                 ajax_upload.addEventListener("abort", abortHandler, false);
-                ajax_upload.open("POST", "/upload/upload_file.php");
+                ajax_upload.open("POST", "/upload/upload_file.php?type="+set_type_upload);
                 ajax_upload.send(form_data);
 
                 function progressHandler(event) {
@@ -172,6 +170,12 @@
         } else {
             alert("Not found file input!!!");
         }
+    }
+    function cancelUploadFile() {
+        ajax_upload.abort();
+        $('#show_progressBar_upload').addClass('hide');
+        $("#file_upload").val("");
+
     }
 
 </script>
