@@ -72,7 +72,7 @@
     <div class="form-group">
         <div class="radio">
             <label>
-                <input type="radio" name="underwear" required>
+                <input type="radio" name="underwear" data-error="Select underwear"  required>
                 Boxers
             </label>
         </div>
@@ -81,6 +81,7 @@
                 <input type="radio" name="underwear" required>
                 Briefs
             </label>
+            <div class="help-block with-errors"></div>
         </div>
     </div>
     <div class="form-group">
