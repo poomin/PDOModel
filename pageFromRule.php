@@ -37,85 +37,71 @@
 <body class="container">
 
 
-<!-- don't forget novalidate to stop browser form validation -->
-<form class="form">
-    <div class="container">
-        <div class="row">
-            <div class='col-sm-4 form-group'>
-                <label for="name">Your Name:</label>
-                <input id="lname" class="form-control" min="3" required type="text" data-error-msg="Must enter your name?">
-            </div>
-            <div class='col-sm-4 form-group'>
-                <label for="name">Email:</label>
-                <input id="email" class="form-control" type="email" required data-error-msg="The email is required in valid format!">
-            </div>
+<form data-toggle="validator" role="form">
+    <div class="form-group">
+        <label for="inputName" class="control-label">Name</label>
+        <input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" required>
+    </div>
+    <div class="form-group has-feedback">
+        <label for="inputTwitter" class="control-label">Twitter</label>
+        <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control" id="inputTwitter" placeholder="1000hz" required>
         </div>
-        <div class='row'>
-            <div class='col-sm-4 form-group'>
-                <label for='address'>Address: (optional)</label>
-                <input id='address' class='form-control' type='text'>
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block with-errors">Hey look, this one has feedback icons!</div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail" class="control-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+        <div class="help-block with-errors"></div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="control-label">Password</label>
+        <div class="form-inline row">
+            <div class="form-group col-sm-6">
+                <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+                <div class="help-block">Minimum of 6 characters</div>
             </div>
-        </div>
-        <div class="row">
-            <div class='col-sm-4 form-group'>
-                <label for='terms'>Agree with T&Cs?</label>
-                <select id='terms' class='form-control' required>
-                    <option selected disabled>Select </option>
-                    <option value="Y">Yes</option>
-                    <option value="N">No</option>
-                </select>
-            </div>
-            <div class='col-sm-4 form-group'>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="option1" value="" required data-error-msg="You have to select one expertise.">
-                        HTML
-                    </label>
-                </div>
-                <div class="checkbox disabled">
-                    <label>
-                        <input type="checkbox" name="option1" value="">
-                        CSS
-                    </label>
-                </div>
-            </div>
-            <div class='col-sm-4 form-group'>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" required data-error-msg="You have to select one expertise.">
-                        Python
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                        Java
-                    </label>
-                </div>
-                <div class="radio disabled">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-                        SQL
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-                <button type="submit" class="btn btn-danger btn-block">Proceed</button>
+            <div class="form-group col-sm-6">
+                <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+                <div class="help-block with-errors"></div>
             </div>
         </div>
     </div>
-
-
-
-<footer style="padding-top: 150px;">
-
-    <div class="container text-muted text-center">
-        <p> &copy; 2018</p>
+    <div class="form-group">
+        <div class="radio">
+            <label>
+                <input type="radio" name="underwear" required>
+                Boxers
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="underwear" required>
+                Briefs
+            </label>
+        </div>
     </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="terms" data-error="Before you wreck yourself" required>
+                Check yourself
+            </label>
+            <div class="help-block with-errors"></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
 
-</footer>
+
+
+
+
+
 </body>
 
 <!-- Jquery -->
@@ -125,28 +111,5 @@
 <!-- Plugins -->
 <script type="text/javascript" src="bootstrap/js/validate-bootstrap.jquery.js"></script>
 
-
-<script>
-    $(function() {
-        $('form').validator({
-            validHandlers: {
-                '.customhandler':function(input) {
-                    //may do some formatting before validating
-                    input.val(input.val().toUpperCase());
-                    //return true if valid
-                    return input.val() === 'JQUERY' ? true : false;
-                }
-            }
-        });
-
-        $('form').submit(function(e) {
-            e.preventDefault();
-
-            if ($('form').validator('check') < 1) {
-                alert('Hurray, your information will be saved!');
-            }
-        })
-    })
-</script>
 
 </html>
